@@ -3,8 +3,8 @@ import React, { useState, useRef } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-import Temp from "./pages.jsx/Temp";
-import Inputs from "./pages.jsx/Inputs";
+import Temp from "./pages/Temp";
+import Inputs from "./pages/Inputs";
 
 export default function ResumeCustomizer() {
 
