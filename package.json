@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://dhiva2003.github.io/cus-resume",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
