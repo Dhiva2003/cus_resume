@@ -8,13 +8,20 @@ export function Modern({resumeRef,fontFamily,name,edu,skills,themeColor}) {
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h1 className="text-3xl font-bold" style={{ color: themeColor }}>
-                      {name}
+                      {name} 
                     </h1>
                     <p className="text-gray-500">{edu.des}</p>
+                    
                   </div>
+                  <p>{edu.city}</p>
                   <p className="text-gray-500 text-sm">{edu.email}</p>
                 </div>
-
+             <section>
+              <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
+                Summary
+              </h2>
+              {edu.dex}
+            </section>
                 <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
                   Experience
                 </h2>
@@ -64,9 +71,18 @@ export function Modern({resumeRef,fontFamily,name,edu,skills,themeColor}) {
       <span className="text-sm text-gray-500 font-semibold" >
         {edu.email}
       </span>
+     <br /> <span className="text-sm text-gray-500 font-semibold text-end" >
+        {edu.city}
+      </span>
     </div>
     <p className="text-gray-600 -mt-7">{edu.des}</p>
                 <br />
+            <section>
+              <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
+                Summary
+              </h2>
+              {edu.dex}
+            </section>
                 <section>
                   <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
                     Experience
@@ -125,9 +141,16 @@ export function Minimal({ name, edu, skills, resumeRef, fontFamily, themeColor }
             >
               {edu.email}
             </a>
+              <span>{edu.city}</span>
           </div>
         </header>
-
+   
+       <section>
+              <h2 className="text-2xl font-semibold -mt-1" style={{ color: themeColor,fontFamily: fontFamily || "sans-serif", }}>
+                Summary
+              </h2>
+              {edu.dex}
+            </section><br />
         <section className="pb-4 mb-4 border-b border-gray-200">
           <h2 className="text-xl font-semibold  mb-4 uppercase tracking-wider " style={{
           fontFamily: fontFamily || "sans-serif",
