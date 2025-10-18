@@ -1,7 +1,7 @@
 import {useState,useRef}from 'react'
 import jsPDF from "jspdf";
 import domtoimage from "dom-to-image";
-import Temp from './Temp';
+import {Modern,Classic,Minimal} from './Temp';
 function Inputs() {
     const [themeColor, setThemeColor] = useState("#3b82f6");
   const [fontFamily, setFontFamily] = useState("sans-serif");
@@ -10,19 +10,20 @@ function Inputs() {
   const[edu,setEdu]=useState({
     degree:"",college:"",
     year:"",exp:"",
-    email:"",des:"",exp2:""
+    email:"",des:"",exp2:"",dex:"",city:""
   });
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
   
- const resumeRef = useRef();
+ const resumeRef = useRef(null);
 
     const handleDownloadPDF = () => {
   const node = resumeRef.current;
-  domtoimage.toPng(node).then((dataUrl) => {
-    const pdf = new jsPDF("p", "mm", "a4");
+  domtoimage.toJpeg(node).then((dataUrl) => {
+    const pdf = new jsPDF("portrait", "mm", "a4");
     const imgProps = pdf.getImageProperties(dataUrl);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-    pdf.addImage(dataUrl, "JPG", 3, 3, pdfWidth, pdfHeight);
+    pdf.addImage(dataUrl, "PNG", 3,3, pdfWidth, pdfHeight);
     pdf.save("My_Resume.pdf");
   });
 };
@@ -41,11 +42,18 @@ const handleSkillChange = (e) => {
 
 
   return (
-    <div className="h-screen w-full grid grid-cols-12 bg-gray-50">
+    <div className="h-screen w-full grid grid-cols-12 ">
       {/* Sidebar */}
-      <div className="col-span-4 p-6 border-r bg-white shadow-sm">
-        <h2 className="text-xl font-semibold mb-4">Customize Resume</h2>
-
+      <div className="col-span-4 p-6 border-r bg-gradient-to-r -mt-5 from-teal-400 to-blue-500 shadow-sm">
+         {
+          selectedTemplate &&  edu.email && name && edu.city && skills && edu.des && edu.dex ? (<button
+                  onClick={handleDownloadPDF}
+                  className=" w-60 my-6 bg-green-500 hover:cursor-pointer text-white py-2 rounded-md "
+                >
+                  Download PDF
+                </button>) : 
+                (<p className="text-red-600">Please fill all the details and select a template to enable PDF download</p>)
+        }
         <div className="space-y-6">
           {/* Theme Color */}
           <div>
@@ -58,16 +66,42 @@ const handleSkillChange = (e) => {
             />
             
           </div>
-       
+
+          <div className="flex w-50 flex-col">
+            
+      <label className="block text-sm font-medium mb-1">Template</label>
+
+      <button
+        className="bg-amber-300 p-4 rounded-2xl hover:cursor-pointer"
+        onClick={() => setSelectedTemplate("classic")}
+      >
+        Classic
+      </button>
+
+      <button
+        className="bg-blue-300 p-4 rounded-2xl hover:cursor-pointer mt-3"
+        onClick={() => setSelectedTemplate("modern")}
+      >
+        Modern
+      </button>
+
+      <button
+        className="bg-orange-300 p-4 rounded-2xl hover:cursor-pointer mt-3"
+        onClick={() => setSelectedTemplate("minimal")}
+      >
+        Minimal
+      </button>
+      </div>
+          
        <div>
           {/* Designation Input */}
           
-            <label className="block text-sm font-medium mb-1">Designation</label>
+            <label className="block text-sm font-medium mb-1">Designation⭐</label>
             <input type="text"  className="w-full border rounded-md p-2" onChange={(e)=> setEdu({...edu,des:e.target.value})} placeholder="enter Your Designation"/>
        </div>
           {/* Name Input */}
           <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
+            <label className="block text-sm font-medium mb-1">Name⭐</label>
             <input
               type="text"
               value={name}
@@ -78,7 +112,7 @@ const handleSkillChange = (e) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="block text-sm font-medium mb-1">Email⭐</label>
             <input
               type="email"
               value={edu.email}
@@ -87,10 +121,28 @@ const handleSkillChange = (e) => {
               className="w-full border rounded-md p-2"
             />
           </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">About You⭐</label>
+            <textarea
+              value={edu.dex} 
+              onChange={(e) => setEdu({ ...edu, dex: e.target.value })}
+              placeholder="A brief description about you"
+              className="w-full border rounded-md p-2"
+            ></textarea>
+            <label className="block text-sm font-medium mb-1">City State⭐</label>
+            <input
+              type="text"
+              value={edu.city} 
+              onChange={(e) => setEdu({ ...edu, city: e.target.value })}
+              placeholder="City, State"
+              className="w-full border rounded-md p-2"
+            ></input>
+          </div>
           {/* Technical Skills */}
           <div>
-  <label className="block text-sm font-medium mb-1">Technical Skills</label>
-  {["HTML", "CSS", "JavaScript", "React", "TailwindCSS", "Vite"].map((skill) => (
+  <label className="block text-sm font-medium mb-1">Technical Skills ⭐</label>
+  {["HTML", "CSS", "JavaScript / Java / Python", "React / Next.js", "TailwindCSS", "Vite"].map((skill) => (
     <div key={skill}>
       <input
         type="checkbox"
@@ -105,7 +157,7 @@ const handleSkillChange = (e) => {
 </div>
           {/* Education Input */}
           <div>
-            <label className="block text-sm font-medium mb-1">Education</label>
+            <label className="block text-sm font-medium mb-1">Education⭐</label>
             <input
               type="text"
               value={edu.degree}
@@ -157,16 +209,44 @@ const handleSkillChange = (e) => {
             </select>
           </div>
         </div>
-        <button
-                  onClick={handleDownloadPDF}
-                  className=" w-60 my-6 bg-green-500 hover:cursor-pointer text-white py-2 rounded-md "
-                >
-                  Download PDF
-                </button>
+        
        </div>
          {/* Resume Preview */}
-         <div className="col-span-8 p-6 overflow-y-auto h-screen">
-       <Temp resumeRef={resumeRef} themeColor={themeColor} fontFamily={fontFamily} name={name} edu={edu} skills={skills}/>
+         <div className="col-span-8 p-6 overflow-y-auto min-h-screen bg-[url('res.png')] bg-cover bg-no-repeat bg-center -mt-5">
+          {selectedTemplate === "classic" && (
+          <Classic
+            resumeRef={resumeRef}
+            themeColor={themeColor}
+            fontFamily={fontFamily}
+            name={name}
+            edu={edu}
+            skills={skills}
+          />
+        )}
+
+        {selectedTemplate === "modern" && (
+          <Modern
+            resumeRef={resumeRef}
+            themeColor={themeColor}
+            fontFamily={fontFamily}
+            name={name}
+            edu={edu}
+            skills={skills}
+          />
+        )}
+
+        {selectedTemplate === "minimal" && (
+          <Minimal
+            resumeRef={resumeRef}
+            themeColor={themeColor}
+            fontFamily={fontFamily}
+            name={name}
+            edu={edu}
+            skills={skills}
+          />
+        )}
+      
+      
        </div>
       </div>
   )
