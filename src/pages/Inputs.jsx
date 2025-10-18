@@ -69,7 +69,7 @@ const handleSkillChange = (e) => {
 
           <div className="flex w-50 flex-col">
             
-      <label className="block text-sm font-medium mb-1">Template</label>
+      <label className="block text-sm font-medium mb-1">Template ⭐</label>
 
       <button
         className="bg-amber-300 p-4 rounded-2xl hover:cursor-pointer active:shadow-[0_5px_10px_rgba(255,0,0,0.8)] "
