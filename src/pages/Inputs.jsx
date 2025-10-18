@@ -57,7 +57,7 @@ const handleSkillChange = (e) => {
         <div className="space-y-6">
           {/* Theme Color */}
           <div>
-            <label className="block text-sm font-medium mb-1">Theme Color</label>
+            <label className="block text-sm font-medium mb-1">Theme Color⭐</label>
             <input
               type="color"
               value={themeColor}
