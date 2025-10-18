@@ -49,7 +49,7 @@ const handleSkillChange = (e) => {
           selectedTemplate &&  edu.email && name && edu.city && skills && edu.des && edu.dex ? (<button
                   onClick={handleDownloadPDF}
                   className=" w-60 my-6 bg-green-500 hover:cursor-pointer text-white py-2 rounded-md "
-                >
+                > 
                   Download PDF
                 </button>) : 
                 (<p className="text-red-600">Please fill all the details and select a template to enable PDF download</p>)
@@ -72,21 +72,21 @@ const handleSkillChange = (e) => {
       <label className="block text-sm font-medium mb-1">Template</label>
 
       <button
-        className="bg-amber-300 p-4 rounded-2xl hover:cursor-pointer"
+        className="bg-amber-300 p-4 rounded-2xl hover:cursor-pointer active:shadow-[0_5px_10px_rgba(255,0,0,0.8)] "
         onClick={() => setSelectedTemplate("classic")}
       >
         Classic
       </button>
 
       <button
-        className="bg-blue-300 p-4 rounded-2xl hover:cursor-pointer mt-3"
+        className="bg-blue-300 p-4 rounded-2xl hover:cursor-pointer mt-3 active:shadow-[0_5px_10px_rgba(255,0,0,0.8)]"
         onClick={() => setSelectedTemplate("modern")}
       >
         Modern
       </button>
 
       <button
-        className="bg-orange-300 p-4 rounded-2xl hover:cursor-pointer mt-3"
+        className="bg-orange-300 p-4 rounded-2xl hover:cursor-pointer mt-3 active:shadow-[0_5px_10px_rgba(255,0,0,0.8)]"
         onClick={() => setSelectedTemplate("minimal")}
       >
         Minimal

@@ -82,7 +82,7 @@ export function Modern({resumeRef,fontFamily,name,edu,skills,themeColor}) {
                 Summary
               </h2>
               {edu.dex}
-            </section>
+            </section> <br />
                 <section>
                   <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
                     Experience
