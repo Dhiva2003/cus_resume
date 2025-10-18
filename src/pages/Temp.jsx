@@ -17,11 +17,11 @@ export function Modern({resumeRef,fontFamily,name,edu,skills,themeColor}) {
                   <p className="text-gray-500 text-sm">{edu.email}</p>
                 </div>
              <section>
-              <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
+              <h2 className="text-xl font-semibold mbt" style={{ color: themeColor }}>
                 Summary
               </h2>
               {edu.dex}
-            </section>
+            </section><br />
                 <h2 className="text-xl font-semibold mb-2" style={{ color: themeColor }}>
                   Experience
                 </h2>
