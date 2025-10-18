@@ -212,7 +212,7 @@ const handleSkillChange = (e) => {
         
        </div>
          {/* Resume Preview */}
-         <div className="col-span-8 p-6 overflow-y-auto min-h-screen bg-[url('res.png')] bg-cover bg-no-repeat bg-center -mt-5">
+         <div className="col-span-8 p-6 overflow-y-auto min-h-screen bg-[url('/res.png')] bg-cover bg-no-repeat bg-center -mt-5">
           {selectedTemplate === "classic" && (
           <Classic
             resumeRef={resumeRef}
